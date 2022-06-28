@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Finance</title>
+</head>
+<body>
+
+    <div class="spage">
+        <a href="/">Dashboard</a>
+        <a href="settingpg">Settings</a>
+        <a href="instructionspg">Instructions</a>
+        <a href="plannerpg">Planner</a>
+        <a href="datapg">My Data</a>
+        <a href="graph-analysis-pg">Graphical Analysis</a>
+        <a href="generate-mail-pg">PDF Generator & Mailing</a>
+        <a href="upload-export-pg">Upload & Export</a>
+    </div>
+
+{% block body %}{% endblock %}
+
+</body>
+
+</html>

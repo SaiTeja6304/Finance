@@ -1,0 +1,43 @@
+/* login.html */
+.main{
+    background-image: url(../images/homeback.jpg);
+    height: 100%;
+    background-size: cover;
+}
+
+/* layout.html */
+.spage{
+    width: 20%;
+    background-color: #1A5276;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 100px;
+}
+
+.spage a{
+    color: white;
+    text-decoration: none;
+    display: block;
+    font-size: 18px;
+    padding-bottom: 5px;
+    padding-top: 20px;
+    padding-left: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.spage a:hover{
+    background-color: rgba(0,0,0,.35);
+}
+
+/* index.html */
+.index{
+    text-align: right;
+}
+
+.heading-index{
+    text-align: center;
+    margin-top: 5%;
+}
