@@ -13,7 +13,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 100px;
+    padding-top: 80px;
 }
 
 .spage a{
@@ -32,12 +32,70 @@
     background-color: rgba(0,0,0,.35);
 }
 
-/* index.html */
-.index{
-    text-align: right;
+.footer{
+    color: white;
+    padding-top: 25px;
+    text-align: center;
+    background-color: #EC7063;
+    height: 10%;
+    margin-top: 20px;
 }
 
+.index{
+    text-align: right;
+    background-color: #1A5276;
+    margin-left: 1040px;
+    width: 17%;
+    border-radius: 25px;
+    color: white;
+    top: 0;
+}
+
+.index a{
+    background-color: #EC7063;
+    text-decoration: none;
+    color: white;
+    border-radius: 25px;
+}
+
+.header{
+    background-color: red;
+    text-align: center;
+    color: white;
+    top: 0;
+    left: 0;
+    height: 10%;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+}
+
+/* index.html */
 .heading-index{
     text-align: center;
     margin-top: 5%;
+}
+
+/* add_data.html */
+.add-data{
+    padding-left: 250px;
+    padding-top: 10px;
+}
+
+input[type=text], input[type=email],input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=date], input[type=time] {
+    width: 20%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
 }

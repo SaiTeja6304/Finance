@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>TODO Add Data</h1>
+</div>
+
+<div class="add-data">
+    <form method="post" action="/send-back-patient-page">
+        <label for="first-name"><b>First Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter your first name" name="first-name" required>
+
+        <label for="last-name"><b>Last Name</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter your last name" name="last-name" required>
+
+        <label for="mobile"><b>Mobile Number</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter your mobile.no" name="mobile" required>
+
+        <label for="address"><b>Address</b></label>
+        <input autocomplete="off" type="text" placeholder="Enter your address" name="address" required>
+
+        <label for="email-id"><b>Email-id</b></label>
+        <input autocomplete="off" type="email" placeholder="Enter your email-id" name="email-id" required>
+
+        <label for="date-of-birth"><b>Date of birth</b></label>
+        <input autocomplete="off" type="date" name="date-of-birth" required>
+
+        <div class="">
+            <button type="submit" name="" value="" class="">SAVE</button>
+            <button type="reset" class="">RESET</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

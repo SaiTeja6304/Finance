@@ -13,6 +13,9 @@ class FinanceController():
     def planner_page(self):
         return render_template("planner.html")
 
+    def add_data(self):
+        return render_template("add_data.html")
+
     def my_data(self):
         return render_template("data.html")
 

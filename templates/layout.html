@@ -8,16 +8,28 @@
     <title>Finance</title>
 </head>
 <body>
+    <div class="header">
+        <h1>Finance Manager</h1>
+    <div class="index">
+            {% if session.name %}
+                You are logged in as {{ session.name }}. <a href="/logout">Log out</a>
+            {% else %}
+                You are not logged in. <a href="/login">Log in</a>.
+            {% endif %}
+    </div>
+    </div>
 
     <div class="spage">
         <a href="/">Dashboard</a>
         <a href="settingpg">Settings</a>
         <a href="instructionspg">Instructions</a>
         <a href="plannerpg">Planner</a>
+        <a href="add-datapg">Add Data</a>
         <a href="datapg">My Data</a>
         <a href="graph-analysis-pg">Graphical Analysis</a>
         <a href="generate-mail-pg">PDF Generator & Mailing</a>
         <a href="upload-export-pg">Upload & Export</a>
+        <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>
     </div>
 
 {% block body %}{% endblock %}
