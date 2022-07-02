@@ -6,4 +6,26 @@
     <h1>TODO PDF Generation & Mailing</h1>
 </div>
 
+<div class="heading-index">
+    <h2>Mailing</h2>
+</div>
+
+<div class="add-data pdf-mail">
+    <form method="post" action="/send-back-patient-page">
+    <label for="email"><b>Enter Email-address</b></label>
+    <input autocomplete="off" type="email" placeholder="Enter the email address" name="email" required>
+        <div class="">
+            <button type="submit" name="" value="" class="submit-button">Send Mail</button>
+            <button type="reset" class="submit-button">RESET</button>
+        </div>
+    </form>
+</div>
+
+<div class="heading-index">
+    <h2>Generate PDF</h2>
+    <ul class="pdf-mail">
+        <li>Press this button <button class="submit-button csv-btn">Generate PDF</button></li>
+    </ul>
+</div>
+
 {% endblock %}

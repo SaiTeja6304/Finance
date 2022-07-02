@@ -81,7 +81,7 @@
     padding-top: 10px;
 }
 
-input[type=text], input[type=number], input[type=date], input[type=time] {
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=email] {
     width: 90%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -93,4 +93,25 @@ input[type=text], input[type=number], input[type=date], input[type=time] {
 input[type=date], input[type=time] {
     width: 20% !important;
     display: inline-block !important;
+}
+
+.submit-button{
+    background-color: #1A5276;
+    color: white;
+    padding: 15px 20px;
+    border: 2px solid #fff;
+    cursor: pointer;
+    border-radius: 25px;
+    width: 25%;
+    text-align: center;
+}
+
+/* upload_export.html */
+.csv-btn{
+    width: 15% !important;
+}
+
+/* pdf_mail.html */
+.pdf-mail{
+    border: 2px solid #ced4da;
 }

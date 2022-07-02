@@ -19,7 +19,7 @@ app.add_url_rule("/logout", view_func=lp.logout)
 
 # Configuring the routes for finance controller
 app.add_url_rule("/settingpg", view_func=fc.settings_page)
-app.add_url_rule("/instructionspg", view_func=fc.instructions_page)
+app.add_url_rule("/planner-datapg", view_func=fc.planner_data)
 app.add_url_rule("/plannerpg", view_func=fc.planner_page)
 app.add_url_rule("/add-datapg", view_func=fc.add_data)
 app.add_url_rule("/datapg", view_func=fc.my_data)

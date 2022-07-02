@@ -7,8 +7,8 @@ class FinanceController():
     def settings_page(self):
         return render_template("settings.html")
 
-    def instructions_page(self):
-        return render_template("instructions.html")
+    def planner_data(self):
+        return render_template("planner_data.html")
 
     def planner_page(self):
         return render_template("planner.html")
