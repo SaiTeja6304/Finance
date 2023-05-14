@@ -5,6 +5,31 @@
     background-size: cover;
 }
 
+.setting-login{
+    margin: 20px auto 95px auto;
+    width: 80%;
+    padding: 100px;
+}
+
+.login{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid #ccc;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.login-btn{
+    background: #1A5276;
+    border: #427cc5;
+    border-radius: 25px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
 /* layout.html */
 .spage{
     width: 20%;
@@ -13,7 +38,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 80px;
+    padding-top: 70px;
 }
 
 .spage a{
@@ -36,38 +61,55 @@
     color: white;
     padding-top: 25px;
     text-align: center;
-    background-color: #EC7063;
+    background-color: #3CB371;
     height: 10%;
     margin-top: 20px;
 }
 
 .index{
-    text-align: right;
+    float: right;
     background-color: #1A5276;
-    margin-left: 1040px;
     width: 17%;
     border-radius: 25px;
     color: white;
 }
 
 .index a{
-    background-color: #EC7063;
-    text-decoration: none;
+    background-color: #3CB371;
     color: white;
     border-radius: 25px;
 }
 
-.header{
-    background-color: red;
-    text-align: center;
-    color: white;
+.topbar{
+    position: fixed;
+    background-color: #3CB371;
+    overflow: hidden;
     top: 0;
     left: 0;
-    height: 10%;
     width: 100%;
-    position: fixed;
     z-index: 999;
+    padding: 1.5% 0 1.5% 0;
 }
+
+.topbar a{
+    text-decoration: none;
+}
+
+.header{
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.dashboard a{
+    background-color: #1A5276;
+    color: white;
+    padding: 10px 10px 10px 10px;
+}
+
 
 /* index.html */
 .heading-index{

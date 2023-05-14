@@ -8,31 +8,45 @@
     <title>Finance</title>
 </head>
 <body>
-    <div class="header">
-        <h1>Finance Manager</h1>
-    <div class="index">
+    <div class="topbar">
+        <div class="header">
+            <h1>Finance Manager</h1>
+        </div>
+        <div class="index">
             {% if session.name %}
                 You are logged in as {{ session.name }}. <a href="/logout">Log out</a>
             {% else %}
                 You are not logged in. <a href="/login">Log in</a>.
             {% endif %}
-    </div>
+        </div>
+        <div class="dashboard">
+            <a href="/">DASHBOARD</a>
+            <a href="/analysis">ANALYSIS</a>
+        </div>
     </div>
 
     <div class="spage">
-        <a href="/">Dashboard</a>
         <a href="settingpg">Settings</a>
+        <!-- planning for how much to spend next year, earn next year, etc -->
         <a href="plannerpg">Planner</a>
+        <!-- displaying what they planned, with update/delete option -->
         <a href="planner-datapg">Planner Data</a>
+        <!-- earnings, spending previous years, save a blob of graph -->
         <a href="add-datapg">Add Data</a>
+        <!-- show previous years earnings, spending -->
         <a href="datapg">My Data</a>
-        <a href="graph-analysis-pg">Graphical Analysis</a>
+        <!-- current earnings, spending -->
+        <a href="current-yrpg">Current Year</a>
+        <!-- generate previous data and graphs and email. generate planning data pdf and email -->
         <a href="generate-mail-pg">PDF Generator & Mailing</a>
+        <!-- uploading financial documents. exporting to csv of previous years data -->
         <a href="upload-export-pg">Upload & Export</a>
+        <!-- show uploaded documents in table, with button to read info from pdf and add to previous years data -->
+        <a href="upload-docpg">Upload Documents</a>
+
+        <!-- loading symbol while generating graphs/reading -->
         <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>
     </div>
-
-{% block body %}{% endblock %}
 
 </body>
 

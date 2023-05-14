@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <title>Finance</title>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="header">
+            <h1>Finance Manager</h1>
+        </div>
+        <div class="index">
+            {% if session.name %}
+                You are logged in as {{ session.name }}. <a href="/logout">Log out</a>
+            {% else %}
+                You are not logged in. <a href="/login">Log in</a>.
+            {% endif %}
+        </div>
+        <div class="dashboard">
+            <a href="/">DASHBOARD</a>
+            <a href="/analysis">ANALYSIS</a>
+        </div>
+    </div>
+
+    <div class="spage">
+        <!-- current earnings, spending graph -->
+        <a href="curyr-data">Current Year Data</a>
+        <!-- table of previous years spending, earning, button to click for graph fetched from db -->
+        <a href="prevgrph">Previous Year Graph</a>
+        <!-- bar graph of all years data by clicking button -->
+        <a href="graph-analysis-pg">Graphical Analysis</a>
+
+        <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>
+    </div>
+
+</body>
+
+</html>
