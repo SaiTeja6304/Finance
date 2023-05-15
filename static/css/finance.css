@@ -119,12 +119,11 @@
 
 /* add_data.html */
 .add-data{
-    padding-left: 250px;
-    padding-top: 10px;
+    padding: 50px 0 0 250px;
 }
 
 input[type=text], input[type=number], input[type=date], input[type=time], input[type=email] {
-    width: 90%;
+    width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: block;
@@ -132,20 +131,51 @@ input[type=text], input[type=number], input[type=date], input[type=time], input[
     background: #f1f1f1;
 }
 
-input[type=date], input[type=time] {
-    width: 20% !important;
+input[type=date], input[type=time], input[type=number] {
+    width: 25% !important;
     display: inline-block !important;
 }
 
-.submit-button{
-    background-color: #1A5276;
-    color: white;
+/* settings.html */
+.buttons-bottom{
+    background: #1A5276;
+    color: #fff;
     padding: 15px 20px;
     border: 2px solid #fff;
     cursor: pointer;
-    border-radius: 25px;
     width: 25%;
+    border-radius: 25px;
+}
+
+.inside-form{
+    border: 1px solid #ced4da;
+    height: 100%;
+    margin: auto auto 95px 50px;
+    width: 80%;
+    background: white;
+    padding: 20px;
+}
+
+/* planner_data.html */
+.responsive-table{
+    border-collapse: collapse;
+    margin: 0 0 0 10px;
+}
+
+.responsive-table td{
+    border: 1px solid black;
     text-align: center;
+    padding: 10px 0 10px 0;
+}
+
+.responsive-table th{
+    padding: 0 50px 0 50px;
+    border: 1px solid black;
+    background: #ddd;
+}
+
+.short{
+    padding: 0 10px 0 10px !important;
 }
 
 /* upload_export.html */

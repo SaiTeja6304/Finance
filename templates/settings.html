@@ -6,4 +6,45 @@
     <h1>TODO Settings</h1>
 </div>
 
+<div class="add-data">
+    <h3>Password Change</h3>
+    <div class="inside-form">
+        <form method="post" action="/pass-change">
+            <label><b>Current Password</b></label>
+            <input autocomplete="off" type="text" placeholder="Enter current password" name="curpwd" required>
+
+            <label><b>New Password</b></label>
+            <input autocomplete="off" type="text" placeholder="Enter new password" name="newpwd" required>
+
+            <label><b>Confirm New Password</b></label>
+            <input autocomplete="off" type="text" placeholder="Again enter new password" name="repwd" required>
+        <div>
+            <button class="buttons-bottom" type="submit" name="chng-pwd" value="chng-pwd">CONFIRM</button>
+            <button class="buttons-bottom" type="reset">RESET</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+<hr>
+
+<div class="add-data">
+    <h3>User Details</h3>
+    <div class="inside-form">
+       <form>
+           <label><b>Username</b></label>
+           <input autocomplete="off" type="text" name="username" value="" readonly>
+
+           <label><b>First Name</b></label>
+           <input autocomplete="off" type="text" name="fname" value="" readonly>
+
+           <label><b>Last Name</b></label>
+           <input autocomplete="off" type="text" name="lname" value="" readonly>
+
+           <label><b>Email</b></label>
+           <input autocomplete="off" type="email" name="email" value="" readonly>
+       </form>
+    </div>
+</div>
+
 {% endblock %}
