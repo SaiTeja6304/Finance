@@ -3,9 +3,13 @@ from flask_session import Session
 import login
 import financeController
 import analysisController
+from finance_model import financeModel
 
 # Initial command
 app = Flask(__name__)
+
+# For database connection
+db = financeModel("finance.db")
 
 # Creating object for login class created in login file, passing this entire app as parameter
 lp = login.Login(app)
@@ -31,10 +35,20 @@ app.add_url_rule("/generate-mail-pg", view_func=fc.generation_mailing)
 app.add_url_rule("/upload-export-pg", view_func=fc.upload_export)
 app.add_url_rule("/upload-docpg", view_func=fc.uplod_doc)
 app.add_url_rule("/analysis", view_func=fc.analysis_show)
+app.add_url_rule("/register", methods=['GET', 'POST'], view_func=fc.register)
+app.add_url_rule("/add-data", methods=['GET', 'POST'], view_func=fc.saveData)
+app.add_url_rule("/planning", methods=['GET', 'POST'], view_func=fc.planner)
+app.add_url_rule("/update-datapg", methods=['GET', 'POST'], view_func=fc.fetch_update)
+app.add_url_rule("/update-data", methods=['GET', 'POST'], view_func=fc.update_data)
+app.add_url_rule("/update-planpg", methods=['GET', 'POST'], view_func=fc.fetch_plan_update)
+app.add_url_rule("/planning-update", methods=['GET', 'POST'], view_func=fc.update_plan)
+app.add_url_rule("/delete-data", methods=['GET', 'POST'], view_func=fc.del_data)
+app.add_url_rule("/delete-plan", methods=['GET', 'POST'], view_func=fc.del_plan)
 
 #Configuring routes for analysis controller
 app.add_url_rule("/curyr-data", view_func=ac.current_yrdata)
 app.add_url_rule("/prevgrph", view_func=ac.prev_yrdata)
+app.add_url_rule("/graph/<int:income>,<int:earn>,<int:tax>,<int:exp>",methods=['GET', 'POST'], view_func=ac.graphData)
 app.add_url_rule("/graph-analysis-pg", view_func=ac.graphical_analysis)
 
 # Settings for creating session

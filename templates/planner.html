@@ -7,29 +7,28 @@
 </div>
 
 <div class="add-data">
-    <h3>Planning</h3>
     <div class="inside-form">
-        <form method="post" action="/">
+        <form method="post" action="/planning">
         <label><b>Income</b></label>
-        <input autocomplete="off" type="number" placeholder="Enter your income" name="income" required>
+        <input autocomplete="off" type="number" placeholder="Enter your income" name="pincome" required>
         <br>
         <label><b>Other Amounts Earned</b></label>
-        <input autocomplete="off" type="number" placeholder="Enter other amounts earned" name="tamounts" required>
+        <input autocomplete="off" type="number" placeholder="Enter other amounts earned" name="pamounts" required>
         <br>
         <label><b>Tax</b></label>
-        <input autocomplete="off" type="number" placeholder="Enter tax paid" name="tax" required>
+        <input autocomplete="off" type="number" placeholder="Enter tax paid" name="ptax" required>
         <br>
         <label><b>Other Expenditures</b></label>
-        <input autocomplete="off" type="number" placeholder="Enter your other expenditures" name="oexpenditures" required>
+        <input autocomplete="off" type="number" placeholder="Enter your other expenditures" name="pothexp" required>
         <br>
         <label><b>Date of Entry</b></label>
-        <input autocomplete="off" type="date" name="date-of-entry" required>
+        <input autocomplete="off" type="date" name="p-date-of-entry" required>
         <br>
         <label><b>Comments</b></label>
-        <input autocomplete="off" type="text" placeholder="Add comments" name="comments" required>
+        <input autocomplete="off" type="text" placeholder="Add comments" name="pcomments" required>
 
         <div>
-            <button class="buttons-bottom" type="submit" name="" value="">SAVE</button>
+            <button class="buttons-bottom" type="submit" name="add-plan" value="add-plan">SAVE</button>
             <button class="buttons-bottom" type="reset">RESET</button>
         </div>
     </form>

@@ -6,4 +6,35 @@
     <h1>TODO Previous Years Analysis</h1>
 </div>
 
+<div class="add-data">
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th class="short">UserID</th>
+                <th>Income</th>
+                <th>Other Earnings</th>
+                <th>Tax</th>
+                <th>Other Expenditures</th>
+                <th>Date Of Entry</th>
+                <th>Comments</th>
+                <th>Graph</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data %}
+            <tr>
+                <td>{{ data[0] }}</td>
+                <td>{{ data[1] }}</td>
+                <td>{{ data[2] }}</td>
+                <td>{{ data[3] }}</td>
+                <td>{{ data[4] }}</td>
+                <td>{{ data[5] }}</td>
+                <td>{{ data[6] }}</td>
+                <td><a href="graph/{{ data[1] }},{{ data[2] }},{{ data[3] }},{{ data[4] }}" class="login-btn">GRAPH</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
 {% endblock %}

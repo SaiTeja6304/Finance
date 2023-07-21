@@ -5,19 +5,37 @@
     background-size: cover;
 }
 
-.setting-login{
-    margin: 20px auto 95px auto;
-    width: 80%;
-    padding: 100px;
+.container{
+    margin-top: 100px;
+    display: flex;
 }
 
 .login{
     text-align: center;
     width: 50%;
-    margin: 0 auto;
     border: 2px solid #ccc;
     padding: 40px 20px;
     box-sizing: border-box;
+}
+
+.regform{
+    text-align: center;
+    width: 40%;
+    border: 2px solid #ccc;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.regform a{
+    text-decoration: none;
+}
+
+.flex-child{
+    flex: 1;
+}
+
+.flex-child:first-child{
+    margin-right: 20px;
 }
 
 .login-btn{
@@ -28,6 +46,42 @@
     text-align: center;
     cursor: pointer;
     padding: 5px 10px;
+    text-decoration: none;
+}
+
+/* popup */
+.modal{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: all 0.5s;
+    visibility: hidden; /* hiding the popup */
+    opacity: 0;
+}
+.content {
+    position: absolute;
+    background: #fff;
+    width: 1000px;
+    padding: 20px 30px;
+    border-radius: 10px;
+}
+.modal:target {
+    visibility: visible; /* showing the popup */
+    opacity: 1;
+}
+.box-close { /* for close button of popup */
+    position: absolute;
+    top: 0;
+    right: 15px;
+    color: #3CB371;
+    text-decoration: none;
+    font-size: 30px;
 }
 
 /* layout.html */
@@ -38,7 +92,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 70px;
+    padding-top: 50px;
 }
 
 .spage a{
@@ -47,8 +101,8 @@
     display: block;
     font-size: 18px;
     padding-bottom: 5px;
-    padding-top: 20px;
-    padding-left: 20px;
+    padding-top: 15px;
+    padding-left: 15px;
     cursor: pointer;
     font-weight: bold;
 }
@@ -88,7 +142,7 @@
     left: 0;
     width: 100%;
     z-index: 999;
-    padding: 1.5% 0 1.5% 0;
+    padding: 1.2% 0 1.2% 0;
 }
 
 .topbar a{
@@ -107,9 +161,12 @@
 .dashboard a{
     background-color: #1A5276;
     color: white;
-    padding: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 6px;
 }
 
+.icon{
+    transform: translateY(20%);
+}
 
 /* index.html */
 .heading-index{
@@ -122,13 +179,14 @@
     padding: 50px 0 0 250px;
 }
 
-input[type=text], input[type=number], input[type=date], input[type=time], input[type=email] {
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=email], input[type=password] {
     width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: block;
     border: none;
     background: #f1f1f1;
+    border-radius: 6px;
 }
 
 input[type=date], input[type=time], input[type=number] {
@@ -176,14 +234,4 @@ input[type=date], input[type=time], input[type=number] {
 
 .short{
     padding: 0 10px 0 10px !important;
-}
-
-/* upload_export.html */
-.csv-btn{
-    width: 15% !important;
-}
-
-/* pdf_mail.html */
-.pdf-mail{
-    border: 2px solid #ced4da;
 }

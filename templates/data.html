@@ -2,35 +2,76 @@
 
 {% block body %}
 
-<div class="heading-index">
+<div class="heading-index" id="hide-dttile">
     <h1>TODO My Data</h1>
 </div>
 
-<div class="add-data">
+<div class="add-data" id="hide-dtable">
     <table class="responsive-table">
         <thead>
             <tr>
-                <th>S.no</th>
+                <th class="short">UserID</th>
                 <th>Income</th>
                 <th>Other Earnings</th>
                 <th>Tax</th>
                 <th>Other Expenditures</th>
                 <th>Date Of Entry</th>
                 <th>Comments</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            {% for data in data %}
+            <tr class="data-{{ data[5] }}">
+                <td>{{ data[0] }}</td>
+                <td>{{ data[1] }}</td>
+                <td>{{ data[2] }}</td>
+                <td>{{ data[3] }}</td>
+                <td>{{ data[4] }}</td>
+                <td>{{ data[5] }}</td>
+                <td>{{ data[6] }}</td>
+                <td><button uid={{ data[0] }} doe={{ data[5] }} class="login-btn upd-data" type="button">UPDATE</button></td>
+                <td><button deluid={{ data[0] }} deldoe={{ data[5] }} class="login-btn del-data">DELETE</button></td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
+</div>
+
+<div class="heading-index" style="display:none" id="show-utitle">
+    <h1>TODO Update Data</h1>
+</div>
+
+<div class="add-data" style="display:none" id="show-uform">
+    <div class="inside-form">
+        <form method="post" action="/update-data">
+        <label><b>Income</b></label>
+        <input id="dincome" autofocus autocomplete="off" type="number" placeholder="Enter your income" name="uincome" required>
+        <br>
+        <label><b>Other Amounts Earned</b></label>
+        <input id="damts" autocomplete="off" type="number" placeholder="Enter other amounts earned" name="uamounts" required>
+        <br>
+        <label><b>Tax</b></label>
+        <input id="dtax" autocomplete="off" type="number" placeholder="Enter tax paid" name="utax" required>
+        <br>
+        <label><b>Other Expenditures</b></label>
+        <input id="dexp" autocomplete="off" type="number" placeholder="Enter your other expenditures" name="uexp" required>
+        <br>
+        <label><b>Date of Entry</b></label>
+        <input id="ddoe" autocomplete="off" type="date" name="u-date-of-entry" readonly>
+        <br>
+        <label><b>Comments</b></label>
+        <input id="dcomment" autocomplete="off" type="text" placeholder="Add comments" name="ucomments" required>
+
+        <input id="duserid" autocomplete="off" type="hidden" name="uuserid" readonly>
+
+        <div>
+            <button class="buttons-bottom" type="submit" name="upddt" value="upddt">UPDATE</button>
+            <button class="buttons-bottom" type="reset">RESET</button>
+        </div>
+    </form>
+    </div>
 </div>
 
 {% endblock %}

@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Finance</title>
@@ -21,18 +22,18 @@
             {% endif %}
         </div>
         <div class="dashboard">
-            <a href="/">DASHBOARD</a>
-            <a href="/analysis">ANALYSIS</a>
+            <a href="/"><span class="material-symbols-outlined icon">dashboard</span>DASHBOARD</a>
+            <a href="/analysis"><span class="material-symbols-outlined icon">monitoring</span>ANALYSIS</a>
         </div>
     </div>
 
     <div class="spage">
         <!-- current earnings, spending graph -->
-        <a href="curyr-data">Current Year Data</a>
+        <a href="curyr-data"><span class="material-symbols-outlined icon">bar_chart_4_bars</span>Current Year Data</a>
         <!-- table of previous years spending, earning, button to click for graph fetched from db -->
-        <a href="prevgrph">Previous Year Graph</a>
+        <a href="prevgrph"><span class="material-symbols-outlined icon">bar_chart</span>Previous Year Graph</a>
         <!-- bar graph of all years data by clicking button -->
-        <a href="graph-analysis-pg">Graphical Analysis</a>
+        <a href="graph-analysis-pg"><span class="material-symbols-outlined icon">chart_data</span>Graphical Analysis</a>
 
         <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>
     </div>

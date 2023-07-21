@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/finance.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, width=device-width">
     <title>Finance</title>
@@ -20,29 +21,29 @@
             {% endif %}
         </div>
         <div class="dashboard">
-            <a href="/">DASHBOARD</a>
-            <a href="/analysis">ANALYSIS</a>
+            <a href="/"><span class="material-symbols-outlined icon">dashboard</span>DASHBOARD</a>
+            <a href="/analysis"><span class="material-symbols-outlined icon">monitoring</span>ANALYSIS</a>
         </div>
     </div>
 
     <div class="spage">
-        <a href="settingpg">Settings</a>
+        <a href="settingpg"><span class="material-symbols-outlined icon">settings</span>Settings</a>
         <!-- planning for how much to spend next year, earn next year, etc -->
-        <a href="plannerpg">Planner</a>
+        <a href="plannerpg"><span class="material-symbols-outlined icon">clarify</span>Planner</a>
         <!-- displaying what they planned, with update/delete option -->
-        <a href="planner-datapg">Planner Data</a>
+        <a href="planner-datapg"><span class="material-symbols-outlined icon">table</span>Planner Data</a>
         <!-- earnings, spending previous years, save a blob of graph -->
-        <a href="add-datapg">Add Data</a>
+        <a href="add-datapg"><span class="material-symbols-outlined icon">add_chart</span>Add Data</a>
         <!-- show previous years earnings, spending -->
-        <a href="datapg">My Data</a>
+        <a href="datapg"><span class="material-symbols-outlined icon">table_view</span>My Data</a>
         <!-- current earnings, spending -->
-        <a href="current-yrpg">Current Year</a>
+        <a href="current-yrpg"><span class="material-symbols-outlined icon">table_chart</span>Current Year</a>
         <!-- generate previous data and graphs and email. generate planning data pdf and email -->
-        <a href="generate-mail-pg">PDF Generator & Mailing</a>
+        <a href="generate-mail-pg"><span class="material-symbols-outlined icon">picture_as_pdf</span>PDF Generator & Mailing</a>
         <!-- uploading financial documents. exporting to csv of previous years data -->
-        <a href="upload-export-pg">Upload & Export</a>
+        <a href="upload-export-pg"><span class="material-symbols-outlined icon">download</span>Upload & Export</a>
         <!-- show uploaded documents in table, with button to read info from pdf and add to previous years data -->
-        <a href="upload-docpg">Upload Documents</a>
+        <a href="upload-docpg"><span class="material-symbols-outlined icon">upload_file</span>Upload Documents</a>
 
         <!-- loading symbol while generating graphs/reading -->
         <footer class="footer"><b>Copyright &#169; Venu Corporations</b></footer>

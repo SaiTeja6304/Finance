@@ -10,22 +10,26 @@
     <h2>Mailing</h2>
 </div>
 
-<div class="add-data pdf-mail">
-    <form method="post" action="/send-back-patient-page">
-    <label for="email"><b>Enter Email-address</b></label>
-    <input autocomplete="off" type="email" placeholder="Enter the email address" name="email" required>
-        <div class="">
-            <button type="submit" name="" value="" class="submit-button">Send Mail</button>
-            <button type="reset" class="submit-button">RESET</button>
-        </div>
+<div class="add-data">
+    <div class="inside-form">
+        <form method="post" action="/">
+            <label><b>Enter Email-address</b></label>
+                <input autocomplete="off" type="email" placeholder="Enter the email address" name="sndemail" required>
+            <div>
+                <button class="buttons-bottom" type="submit" name="" value="">SEND EMAIL</button>
+                <button class="buttons-bottom" type="reset">RESET</button>
+            </div>
     </form>
+    </div>
 </div>
 
 <div class="heading-index">
     <h2>Generate PDF</h2>
-    <ul class="pdf-mail">
-        <li>Press this button <button class="submit-button csv-btn">Generate PDF</button></li>
-    </ul>
+    <div class="add-data">
+       <div class="inside-form">
+           <span>Press this button <button class="buttons-bottom">Generate PDF</button></span>
+       </div>
+    </div>
 </div>
 
 {% endblock %}
