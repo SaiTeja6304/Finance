@@ -1,11 +1,24 @@
+import base64
+import csv
 import json
-
+import os
+import smtplib
+import datetime
+from io import BytesIO
+import subprocess
+import werkzeug
 from flask import render_template, redirect, request, app, flash
+from fpdf import FPDF
+from werkzeug.utils import secure_filename
+
 from login_encap import Register
 from finance_encap import FinanceEncap
 from finance_model import financeModel
 from login import Login
-
+import matplotlib.pyplot as pyplot
+import numpy as np
+import tkinter as tk
+from tkinter.filedialog import askopenfilename
 
 class FinanceController:
     def __init__(self, app):
@@ -13,7 +26,58 @@ class FinanceController:
         pass
 
     def settings_page(self):
-        return render_template("settings.html")
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        settingsdata = fm.fetchSettingsData(finaluser)
+        return render_template("settings.html", settingsdata=settingsdata)
+
+    def change_password(self):
+        if request.method == "POST":
+            if request.form.get("chng-pwd"):
+                newpwd = request.form.get("newpwd")
+                repwd = request.form.get("repwd")
+
+                loguser = Login(app)
+                finaluser = loguser.get_user()
+                if newpwd != repwd:
+                    flash("Password not match. Re-enter", "info")
+                    return redirect("/settingpg")
+                else:
+                    fm = financeModel(app)
+                    fm.changePwd(finaluser, newpwd)
+                    flash("Password Changed Successfully", "info")
+                    return redirect("/settingpg")
+
+    def show_settings_update(self):
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        settingsdata = fm.fetchSettingsData(finaluser)
+        return render_template("settings_update.html", settingsdata=settingsdata)
+
+    def update_details(self):
+        if request.method == "POST":
+            if request.form.get("upddet"):
+                username = request.form.get("username")
+                usemail = request.form.get("usemail")
+                dob = request.form.get("dob")
+                pnum = request.form.get("pnum")
+                pwd = request.form.get("pwd")
+                userupd = request.form.get("userupd")
+
+                reg = Register(username, usemail, dob, pnum, pwd)
+                reg.set_usname(username)
+                reg.set_usemail(usemail)
+                reg.set_usdob(dob)
+                reg.set_usnum(pnum)
+                reg.set_uspwd(pwd)
+
+                fm = financeModel(app)
+                fm.updateUserDetails(reg, userupd)
+
+                flash("Update Details Successfully", "info")
+                return redirect("/")
 
     def register(self):
         if request.method == "POST":
@@ -32,9 +96,32 @@ class FinanceController:
                 reg.set_uspwd(pwd)
 
                 fm = financeModel(app)
-                fm.addUser(reg)
+                fuid = fm.addUser(reg)
+
+                self.send_email(usemail, fuid, name)
 
                 return redirect("/")
+
+    def send_email(self, usemail, fuid, name):
+        EMAIL_ADDRESS = os.environ.get('MAIL_DEFAULT_SENDER')
+        EMAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.ehlo()
+
+            smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+            subject = 'Registeration Success'
+            body = f"""Dear Customer \n {name}, Thanks For Registering with Finance Manager. 
+                Please use the following UserID to log-in to the application:{fuid} \n 
+                Thank you for using our application - Finance Manager. \n 
+                For any further queries please contact +919885983806"""
+
+            msg = f'Subject: {subject}\n\n {body}'
+
+            smtp.sendmail(EMAIL_ADDRESS, usemail, msg)
 
     def planner_data(self):
         loguser = Login(app)
@@ -194,16 +281,157 @@ class FinanceController:
         return deldoe
 
     def current_yr(self):
-        return render_template("current_yr.html")
+        dt = datetime.datetime.now()
+        date = dt.strftime('%Y')
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        currentdata = fm.fetchCurrentDate(finaluser)
+        finaldata = []
+        for i in currentdata:
+            split = i[0]
+            if date == split[0:4]:
+                finaldata.append(i)
+        showdata = []
+        for j in finaldata:
+            showdata.append(fm.fetchCurrentData(j))
+        return render_template("current_yr.html", date=date, showdata=showdata)
 
     def generation_mailing(self):
         return render_template("pdf_mail.html")
 
+    def graph_email(self):
+        if request.method == "POST":
+            if request.form.get("grphemail"):
+                sndemail = request.form.get("sndemail")
+                emldoe = request.form.get("emldoe")
+                fm = financeModel(app)
+                grphdt = fm.graphEmail(emldoe)
+                if len(grphdt) == 0:
+                    flash("Data Not Available For This Date", "info")
+                    return redirect("/generate-mail-pg")
+                loguser = Login(app)
+                finaluser = loguser.get_user()
+                piegr = BytesIO()
+                data = np.array([grphdt[0][1], grphdt[0][2], grphdt[0][3], grphdt[0][4]])
+                labels = ['Income', 'Earnings', 'Tax', 'Expenditure']
+                total = sum(data)
+                fig = pyplot.figure(figsize=(2, 2))
+                pyplot.pie(data, labels=labels, autopct=lambda p: '{:.0f}%'.format(p * total / 100), shadow=True)
+                pyplot.title('Amounts', fontsize=14)
+                pyplot.grid(True)
+                pyplot.savefig(piegr, format='png')
+                pyplot.close()
+                piegr.seek(0)
+                plot_url = base64.b64encode(piegr.getvalue()).decode('utf8')
+
+                EMAIL_ADDRESS = os.environ.get('MAIL_DEFAULT_SENDER')
+                EMAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+                with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+                    smtp.ehlo()
+                    smtp.starttls()
+                    smtp.ehlo()
+
+                    smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+
+                    subject = 'Finance Manager - Graph'
+                    body = f"""Dear Customer \n {finaluser}, Thanks For using Graphing Services with Finance Manager. 
+                                Here is the graph for the requested date: {emldoe} --> \n {plot_url} \n 
+                                For any further queries please contact +919885983806"""
+
+                    msg = f'Subject: {subject}\n\n {body}'
+
+                    smtp.sendmail(EMAIL_ADDRESS, sndemail, msg)
+
+                return redirect("/")
+
+    def generate_pdf(self):
+        # create pdf object
+        pdf = FPDF('P', 'mm', 'Letter')
+        # add a page
+        pdf.add_page()
+        # set font and size
+        pdf.set_font('times', '', 16)
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        userdata = fm.fetchData(finaluser)
+        pdf.cell(150, 20, "UserID, Income, Earnings, Tax, Expenditure, Comments", ln=True, border=True)
+        for data in userdata:
+            # insert data into pdf
+            pdf.cell(150, 20, str(data), ln=True, border=True)
+
+        # create pdf and name it
+        pdf.output('finance_data.pdf')
+        flash("PDF Generated Successfully", "info")
+        return redirect("/")
+
+    def generate_plan_pdf(self):
+        # create pdf object
+        pdf = FPDF('P', 'mm', 'Letter')
+        # add a page
+        pdf.add_page()
+        # set font and size
+        pdf.set_font('times', '', 16)
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        plandata = fm.fetchPlan(finaluser)
+        pdf.cell(150, 20, "UserID, Income, Earnings, Tax, Expenditure, Comments", ln=True, border=True)
+        for plan in plandata:
+            # insert data into pdf
+            pdf.cell(150, 20, str(plan), ln=True, border=True)
+
+        # create pdf and name it
+        pdf.output('finance_plan.pdf')
+        flash("PDF Generated Successfully", "info")
+        return redirect("/")
+
     def upload_export(self):
         return render_template("upload_export.html")
 
+    def export_csv(self):
+        fm = financeModel(app)
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        filename = "data"
+        myfilename = filename + ".csv"
+        with open(myfilename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['UserID', 'Income', 'Earnings', 'Tax', 'Expenditure', 'Date', 'Comments'])
+            writer.writerows(fm.fetchData(finaluser))
+        flash("CSV Generated Successfully", "info")
+        return redirect("/")
+
+    def export_plan_csv(self):
+        fm = financeModel(app)
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        filename = "plan"
+        myfilename = filename + ".csv"
+        with open(myfilename, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['UserID', 'Income', 'Earnings', 'Tax', 'Expenditure', 'Date', 'Comments'])
+            writer.writerows(fm.fetchPlan(finaluser))
+        flash("CSV Generated Successfully", "info")
+        return redirect("/")
+
     def uplod_doc(self):
         return render_template("upload_doc.html")
+
+    def explore(self):
+        tk.Tk().withdraw()  # part of the import if you are not using other tkinter functions
+
+        fn = askopenfilename()
+        print("user chose", fn)
+        #subprocess.Popen(r'explorer /select,"C:\path\of\folder\file"')
+
+    def upload_file(self):
+        if request.method == 'POST':
+            f = request.files['file']
+            f.save(secure_filename(f.filename))
+            return 'file uploaded successfully'
 
     def analysis_show(self):
         return render_template("analysis.html")

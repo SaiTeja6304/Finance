@@ -44,12 +44,23 @@ app.add_url_rule("/update-planpg", methods=['GET', 'POST'], view_func=fc.fetch_p
 app.add_url_rule("/planning-update", methods=['GET', 'POST'], view_func=fc.update_plan)
 app.add_url_rule("/delete-data", methods=['GET', 'POST'], view_func=fc.del_data)
 app.add_url_rule("/delete-plan", methods=['GET', 'POST'], view_func=fc.del_plan)
+app.add_url_rule("/pass-change", methods=['GET', 'POST'], view_func=fc.change_password)
+app.add_url_rule("/show-upddet", view_func=fc.show_settings_update)
+app.add_url_rule("/update-details", methods=['GET', 'POST'], view_func=fc.update_details)
+app.add_url_rule("/graph-email", methods=['GET', 'POST'], view_func=fc.graph_email)
+app.add_url_rule("/generatepdf", view_func=fc.generate_pdf)
+app.add_url_rule("/genpdfplan", view_func=fc.generate_plan_pdf)
+app.add_url_rule("/exportcsv", view_func=fc.export_csv)
+app.add_url_rule("/exptplancsv", view_func=fc.export_plan_csv)
+app.add_url_rule("/uploader", methods=['GET', 'POST'], view_func=fc.upload_file)
 
 #Configuring routes for analysis controller
 app.add_url_rule("/curyr-data", view_func=ac.current_yrdata)
 app.add_url_rule("/prevgrph", view_func=ac.prev_yrdata)
 app.add_url_rule("/graph/<int:income>,<int:earn>,<int:tax>,<int:exp>",methods=['GET', 'POST'], view_func=ac.graphData)
 app.add_url_rule("/graph-analysis-pg", view_func=ac.graphical_analysis)
+app.add_url_rule("/grapanalysis", methods=['GET', 'POST'], view_func=ac.graph_all_years)
+
 
 # Settings for creating session
 app.config["SESSION_PERMANENT"] = False

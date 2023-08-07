@@ -179,7 +179,7 @@
     padding: 50px 0 0 250px;
 }
 
-input[type=text], input[type=number], input[type=date], input[type=time], input[type=email], input[type=password] {
+input[type=text], input[type=number], input[type=date], input[type=time], input[type=email], input[type=password], #grall {
     width: 80%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -203,6 +203,7 @@ input[type=date], input[type=time], input[type=number] {
     cursor: pointer;
     width: 25%;
     border-radius: 25px;
+    text-decoration: none;
 }
 
 .inside-form{
@@ -212,6 +213,10 @@ input[type=date], input[type=time], input[type=number] {
     width: 80%;
     background: white;
     padding: 20px;
+}
+
+.stn-pop{
+    top: 200px !important;
 }
 
 /* planner_data.html */
@@ -234,4 +239,10 @@ input[type=date], input[type=time], input[type=number] {
 
 .short{
     padding: 0 10px 0 10px !important;
+}
+
+/* current_yrdata.html */
+.curpie{
+    width: 800px;
+    height: 500px;
 }

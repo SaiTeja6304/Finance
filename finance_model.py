@@ -39,6 +39,7 @@ class financeModel():
         fuid = 'USER' + str(uid)
         self.cur.execute("INSERT INTO users (userid, username, useremail, userdob, usernumber, password) VALUES (?,?,?,?,?,?)",(fuid, name, email, dob, num, pwd))
         self.con.commit()
+        return fuid
 
     def addData(self, data, fuser):
         income = data.get_income()
@@ -106,6 +107,36 @@ class financeModel():
     def delPlan(self, delplan, delpuid):
         self.cur.execute("DELETE FROM plan WHERE userid=? AND doe=?",(delpuid, delplan))
         self.con.commit()
+
+    def fetchSettingsData(self, finaluserid):
+        self.cur.execute("SELECT * FROM users WHERE userid=?",(finaluserid,))
+        return self.cur.fetchall()
+
+    def changePwd(self, pwduser, pwd):
+        self.cur.execute("UPDATE users SET password=? WHERE userid=?",(pwd, pwduser))
+        self.con.commit()
+
+    def updateUserDetails(self, userdt, userid):
+        name = userdt.get_usname()
+        email = userdt.get_usemail()
+        dob = userdt.get_usdob()
+        num = userdt.get_usnum()
+        pwd = userdt.get_uspwd()
+        self.cur.execute("UPDATE users SET username=?, useremail=?, userdob=?, usernumber=?, password=? WHERE userid=?",(name, email, dob, num, pwd, userid))
+        self.con.commit()
+
+    def fetchCurrentDate(self, finaluser):
+        self.cur.execute("SELECT doe FROM data WHERE userid=?",(finaluser,))
+        return self.cur.fetchall()
+
+    def fetchCurrentData(self, doe):
+        self.cur.execute("SELECT * FROM data WHERE doe=?",(doe))
+        return self.cur.fetchall()
+
+    def graphEmail(self, doe):
+        self.cur.execute("SELECT * FROM data WHERE doe=?",(doe,))
+        return self.cur.fetchall()
+
 
     def __del__(self):
         self.cur.close()

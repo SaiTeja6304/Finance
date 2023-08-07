@@ -6,4 +6,45 @@
     <h1>TODO Graphical Analysis</h1>
 </div>
 
+<div class="add-data">
+    <div class="inside-form">
+        <form>
+            <label><b>Date Of Entry</b></label>
+            <select id="grall">
+                <option disabled selected value="">Year</option>
+                {% for yearlist in yearlist %}
+                <option>{{ yearlist }}</option>
+                {% endfor %}
+            </select>
+            <div>
+                <button class="buttons-bottom anl-gr" type="button">BAR GRAPH</button>
+                <button class="buttons-bottom" type="reset">RESET</button>
+            </div>
+        </form>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
+    </div>
+</div>
+
+<div class="add-data">
+    <div class="inside-form">
+        <h2>All Years Savings Line Graph</h2>
+        <br>
+        <img src="data:image/png;base64, {{ plot_url }}">
+        <h2>All Years Savings Bar Graph</h2>
+        <br>
+        <img src="data:image/png;base64, {{ plot_url1 }}">
+    </div>
+</div>
+
+
 {% endblock %}

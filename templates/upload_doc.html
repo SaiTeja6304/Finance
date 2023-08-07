@@ -6,4 +6,25 @@
     <h1>TODO Upload Documents</h1>
 </div>
 
+<div class="heading-index">
+    <h2>Upload Documents</h2>
+    <ul>
+        <li>Press this button to upload financial documents</li>
+        <button class="submit-button csv-btn chfile" type="button">Choose File</button>
+        <span>No file(s) selected</span>
+    </ul>
+</div>
+<!-- https://pythonbasics.org/flask-upload-file/  -->
+<div class="heading-index">
+    <h2>Upload Documents</h2>
+    <form action = "/uploader" method = "POST" enctype = "multipart/form-data">
+         <input type = "file" name = "file" />
+         <input type = "submit"/>
+      </form>
+</div>
+
+<div class="heading-index">
+    <h2>Your Documents</h2>
+</div>
+
 {% endblock %}

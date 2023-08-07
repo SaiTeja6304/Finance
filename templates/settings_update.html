@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="heading-index">
+    <h1>TODO Update Details</h1>
+</div>
+
+<div class="add-data">
+    <div class="inside-form">
+        <form action="/update-details" method="post">
+        <h1>Update Details</h1>
+        <label><b>Username</b></label>
+        <input autocomplete="off" type="text" name="username" value="{{ settingsdata[0][1] }}" required>
+
+        <label><b>User Email</b></label>
+        <input autocomplete="off" type="email" name="usemail" value="{{ settingsdata[0][2] }}" required>
+
+        <label><b>Date Of Birth</b></label>
+        <input autocomplete="off" type="date" name="dob" value="{{ settingsdata[0][3] }}" required>
+           <br>
+        <label><b>Phone Number</b></label>
+        <input autocomplete="off" type="text" name="pnum" value="{{ settingsdata[0][4] }}" required>
+
+        <label><b>Password</b></label>
+        <input autocomplete="off" type="text" name="pwd" value="{{ settingsdata[0][5] }}" readonly>
+
+        <input autocomplete="off" type="hidden" name="userupd" value="{{ settingsdata[0][0] }}" readonly>
+
+        <div>
+            <button class="buttons-bottom" type="submit" name="upddet" value="upddet">UPDATE</button>
+            <button class="buttons-bottom" type="reset">RESET</button>
+        </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

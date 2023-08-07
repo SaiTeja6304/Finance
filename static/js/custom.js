@@ -87,3 +87,46 @@ $('.del-plan').click(function(){
         }
     });
 });
+
+$('.chngpwd').click(function(){
+    var newpwd =$('#newpwd').val();
+    var repwd = $('#repwd').val();
+    $.ajax({
+        type: 'GET',
+        url: "/pass-change",
+        contentType: 'application/json;charset=UTF-8',
+        data: {'newpwd':newpwd, 'repwd':repwd},
+        success: function(data,status){
+            var error = JSON.parse(data);
+            if(error == "Password not match. Re-enter"){
+                document.getElementById('showerror').style.display = 'block';
+                document.getElementById('showerror').innerHTML = 'Error: Password not match. Re-enter';
+            }
+        }
+    });
+});
+
+$('.anl-gr').click(function(){
+    var grdt = $('#grall').val()
+    $.ajax({
+    type: 'GET',
+    url: "/grapanalysis",
+    contentType: 'application/json;charset=UTF-8',
+    data: {'grdt':grdt},
+    success: function(data,status){
+
+    }
+    });
+});
+
+$('.chfile').click(function(){
+    $.ajax({
+    type: 'GET',
+    url: "/choose-file",
+    contentType: 'application/json;charset=UTF-8',
+    data: {},
+    success: function(data,status){
+
+    }
+    });
+});

@@ -12,14 +12,27 @@
 
 <div class="add-data">
     <div class="inside-form">
-        <form method="post" action="/">
+        <form method="post" action="/graph-email">
             <label><b>Enter Email-address</b></label>
-                <input autocomplete="off" type="email" placeholder="Enter the email address" name="sndemail" required>
+            <input autocomplete="off" type="email" placeholder="Enter the email address" name="sndemail" required>
+            <label><b>Date Of Entry</b></label>
+            <input autocomplete="off" type="date" name="emldoe" required>
             <div>
-                <button class="buttons-bottom" type="submit" name="" value="">SEND EMAIL</button>
+                <button class="buttons-bottom" type="submit" name="grphemail" value="grphemail">SEND EMAIL</button>
                 <button class="buttons-bottom" type="reset">RESET</button>
             </div>
     </form>
+    <div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </div>
     </div>
 </div>
 
@@ -27,7 +40,16 @@
     <h2>Generate PDF</h2>
     <div class="add-data">
        <div class="inside-form">
-           <span>Press this button <button class="buttons-bottom">Generate PDF</button></span>
+           <span>Press this button <a href="generatepdf" class="buttons-bottom">Generate PDF</a> to get data</span>
+       </div>
+    </div>
+</div>
+
+<div class="heading-index">
+    <h2>Generate PDF PLAN</h2>
+    <div class="add-data">
+       <div class="inside-form">
+           <span>Press this button <a href="genpdfplan" class="buttons-bottom">Generate PDF</a> to get plan</span>
        </div>
     </div>
 </div>

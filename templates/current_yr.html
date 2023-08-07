@@ -7,11 +7,11 @@
 </div>
 
 <div class="add-data">
-    <h3>Data of Current Year : 2023</h3>
+    <h3>Data of Current Year : {{ date }}</h3>
     <table class="responsive-table">
         <thead>
             <tr>
-                <th>S.no</th>
+                <th>UserID</th>
                 <th>Income</th>
                 <th>Other Earnings</th>
                 <th>Tax</th>
@@ -21,15 +21,17 @@
             </tr>
         </thead>
         <tbody>
+            {% for showdata in showdata %}
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>{{ showdata[0][0] }}</td>
+                <td>{{ showdata[0][1] }}</td>
+                <td>{{ showdata[0][2] }}</td>
+                <td>{{ showdata[0][3] }}</td>
+                <td>{{ showdata[0][4] }}</td>
+                <td>{{ showdata[0][5] }}</td>
+                <td>{{ showdata[0][6] }}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
