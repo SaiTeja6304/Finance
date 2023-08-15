@@ -20,7 +20,8 @@
                 <h1>Please Login</h1>
                 <input autocomplete="off" autofocus name="name" placeholder="Enter UserID" type="text" required>
                 <input autocomplete="off" name="pwd" placeholder="Enter Password" type="password" required>
-                <input class="login-btn" type="submit" value="Log In">
+                <input class="login-btn" type="submit" name="login" value="Log In">
+                <input class="login-btn" type="submit" name="faceid" value="FaceID">
                 {% if error == "Wrong Password. Please Try Again" %}
                     <p><strong>Error: </strong>{{ error }}</p>
                 {% endif %}

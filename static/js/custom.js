@@ -119,14 +119,8 @@ $('.anl-gr').click(function(){
     });
 });
 
-$('.chfile').click(function(){
-    $.ajax({
-    type: 'GET',
-    url: "/choose-file",
-    contentType: 'application/json;charset=UTF-8',
-    data: {},
-    success: function(data,status){
-
-    }
-    });
-});
+function removeFlash() {
+    const element = document.getElementById('div_flash');
+    element.remove();
+    $('#alert-close').hide();
+}

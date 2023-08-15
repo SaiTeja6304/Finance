@@ -53,11 +53,13 @@ app.add_url_rule("/genpdfplan", view_func=fc.generate_plan_pdf)
 app.add_url_rule("/exportcsv", view_func=fc.export_csv)
 app.add_url_rule("/exptplancsv", view_func=fc.export_plan_csv)
 app.add_url_rule("/uploader", methods=['GET', 'POST'], view_func=fc.upload_file)
+app.add_url_rule("/download/<string:fileuser>,<string:filename>", methods=['GET', 'POST'], view_func=fc.download)
+
 
 #Configuring routes for analysis controller
 app.add_url_rule("/curyr-data", view_func=ac.current_yrdata)
 app.add_url_rule("/prevgrph", view_func=ac.prev_yrdata)
-app.add_url_rule("/graph/<int:income>,<int:earn>,<int:tax>,<int:exp>",methods=['GET', 'POST'], view_func=ac.graphData)
+app.add_url_rule("/graph/<int:income>,<int:earn>,<int:tax>,<int:exp>", methods=['GET', 'POST'], view_func=ac.graphData)
 app.add_url_rule("/graph-analysis-pg", view_func=ac.graphical_analysis)
 app.add_url_rule("/grapanalysis", methods=['GET', 'POST'], view_func=ac.graph_all_years)
 

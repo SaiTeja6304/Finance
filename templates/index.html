@@ -10,7 +10,12 @@
         {% if messages %}
         <ul>
         {% for message in messages %}
-          <li>{{ message }}</li>
+            <li>
+                <div class="add-data">
+                    <div id="div_flash" class="flash-msg">{{ message }}</div>
+                    <input type="button" value=&#10006 onclick="removeFlash()" id="alert-close">
+                </div>
+            </li>
         {% endfor %}
         </ul>
         {% endif %}

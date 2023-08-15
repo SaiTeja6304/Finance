@@ -13,6 +13,8 @@ class financeModel():
         self.cur.execute("""CREATE TABLE IF NOT EXISTS plan (userid TEXT NOT NULL, 
         income INTEGER, otheramt INTEGER, tax INTEGER, otherexp INTEGER, doe INTEGER, 
         comments TEXT NOT NULL, FOREIGN KEY(userid) REFERENCES users(userid))""")
+        self.cur.execute("""CREATE TABLE IF NOT EXISTS files (id INTEGER PRIMARY KEY, userid TEXT NOT NULL, 
+        filename TEXT NOT NULL, filedata BLOB NOT NULL, FOREIGN KEY(userid) REFERENCES users(userid))""")
         self.con.commit()
 
     def loginDetails(self, userid):
@@ -135,6 +137,18 @@ class financeModel():
 
     def graphEmail(self, doe):
         self.cur.execute("SELECT * FROM data WHERE doe=?",(doe,))
+        return self.cur.fetchall()
+
+    def insertFile(self, finaluser, filename, filedata):
+        self.cur.execute("INSERT INTO files (userid, filename, filedata) VALUES (?,?,?)", (finaluser, filename, filedata))
+        self.con.commit()
+
+    def fetchFiles(self, finaluser):
+        self.cur.execute("SELECT id, userid, filename FROM files")
+        return self.cur.fetchall()
+
+    def downloadFile(self, fileuser, filename):
+        self.cur.execute("SELECT filedata FROM files WHERE userid=? AND filename=?", (fileuser, filename))
         return self.cur.fetchall()
 
 

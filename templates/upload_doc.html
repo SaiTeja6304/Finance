@@ -6,25 +6,41 @@
     <h1>TODO Upload Documents</h1>
 </div>
 
-<div class="heading-index">
-    <h2>Upload Documents</h2>
-    <ul>
-        <li>Press this button to upload financial documents</li>
-        <button class="submit-button csv-btn chfile" type="button">Choose File</button>
-        <span>No file(s) selected</span>
-    </ul>
-</div>
-<!-- https://pythonbasics.org/flask-upload-file/  -->
-<div class="heading-index">
-    <h2>Upload Documents</h2>
-    <form action = "/uploader" method = "POST" enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-      </form>
+<div class="add-data">
+    <div class="inside-form">
+        <h2 class="head-updown">Upload Documents</h2>
+        <form action = "/uploader" method = "POST" enctype = "multipart/form-data">
+            <input class="buttons-bottom" type = "file" name = "file">
+            <input class="login-btn" type = "submit">
+          </form>
+    </div>
 </div>
 
 <div class="heading-index">
     <h2>Your Documents</h2>
+</div>
+<div class="add-data">
+    <table class="responsive-table">
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th>UserID</th>
+                <th>Filename</th>
+                <th>Download</th>
+                <th>Read</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for filedt in filedt %}
+            <tr>
+                <td>{{ filedt[0] }}</td>
+                <td>{{ filedt[1] }}</td>
+                <td>{{ filedt[2] }}</td>
+                <td><a href="download/{{ filedt[1] }},{{ filedt[2] }}" class="login-btn">DOWNLOAD</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}

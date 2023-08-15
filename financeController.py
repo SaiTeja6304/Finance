@@ -5,11 +5,8 @@ import os
 import smtplib
 import datetime
 from io import BytesIO
-import subprocess
-import werkzeug
-from flask import render_template, redirect, request, app, flash
+from flask import render_template, redirect, request, app, flash, send_file
 from fpdf import FPDF
-from werkzeug.utils import secure_filename
 
 from login_encap import Register
 from finance_encap import FinanceEncap
@@ -325,6 +322,7 @@ class FinanceController:
                 piegr.seek(0)
                 plot_url = base64.b64encode(piegr.getvalue()).decode('utf8')
 
+
                 EMAIL_ADDRESS = os.environ.get('MAIL_DEFAULT_SENDER')
                 EMAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
 
@@ -418,20 +416,27 @@ class FinanceController:
         return redirect("/")
 
     def uplod_doc(self):
-        return render_template("upload_doc.html")
-
-    def explore(self):
-        tk.Tk().withdraw()  # part of the import if you are not using other tkinter functions
-
-        fn = askopenfilename()
-        print("user chose", fn)
-        #subprocess.Popen(r'explorer /select,"C:\path\of\folder\file"')
+        loguser = Login(app)
+        finaluser = loguser.get_user()
+        fm = financeModel(app)
+        filedt = fm.fetchFiles(finaluser)
+        return render_template("upload_doc.html", filedt=filedt)
 
     def upload_file(self):
+        loguser = Login(app)
+        finaluser = loguser.get_user()
         if request.method == 'POST':
-            f = request.files['file']
-            f.save(secure_filename(f.filename))
-            return 'file uploaded successfully'
+            file = request.files['file']
+            fm = financeModel(app)
+            fm.insertFile(finaluser, file.filename, file.stream.read())
+            flash("Uploaded Successfully", "info")
+            return redirect("/")
+
+
+    def download(self, fileuser, filename):
+        fm = financeModel(app)
+        return send_file(BytesIO(fm.downloadFile(fileuser, filename)[0][0]), attachment_filename=filename, as_attachment=True)
+
 
     def analysis_show(self):
         return render_template("analysis.html")
